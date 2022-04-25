@@ -22,6 +22,8 @@ export async function requestLocation(location: string): Promise<Array<LocationR
 
     return AxiosMapper.toLocationResponse(data);
   } catch (error) {
+    console.log(error);
+
     if (axios.isAxiosError(error)) {
       // TODO: Log errors to db using error.response.data info
       console.log(error.response?.data);
@@ -44,6 +46,8 @@ export async function requestWeather(lat: string, lon: string, units: Units = Un
 
     return AxiosMapper.toWeatherResponse(data);
   } catch (error) {
+    console.log(error);
+
     if (axios.isAxiosError(error)) {
       // TODO: Log errors to db using error.response.data info
       console.log(error.response?.data);

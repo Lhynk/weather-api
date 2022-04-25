@@ -11,6 +11,7 @@ async function getLocation(req: Request, res: Response): Promise<any> {
 
     return res.json(result);
   } catch (error: any) {
+    console.log(error);
     return res.status(error.code).json({ msg: error.message });
   }
 }
@@ -23,6 +24,7 @@ async function getWeather(req: Request, res: Response): Promise<any> {
 
     return res.json(result);
   } catch (error: any) {
+    console.log(error);
     return res.status(error.code).json({ msg: error.message });
   }
 }

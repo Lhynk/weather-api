@@ -1,5 +1,6 @@
 import { LocationResponse } from '../models/locationResponse.model';
 import { GeoLocation } from '../models/vendor/geoLocation.model';
+import { WeatherResponse } from '../models/weatherResponse.model';
 
 /**
  * Convert response to json then use the callback to map
@@ -26,6 +27,13 @@ export const Mapper =
 const toLocationResponse = (data: Array<GeoLocation>): Array<LocationResponse> =>
   data.map(({ name, state, country, lat, lon }: GeoLocation) => ({ name, state, country, lat, lon }));
 
+const toWeatherResponse = ({ weather, main, wind }: any): WeatherResponse => ({
+  icon: weather[0] && weather[0].icon,
+  info: main,
+  wind: { speed: wind.speed, deg: wind.deg },
+});
+
 export const AxiosMapper = {
   toLocationResponse,
+  toWeatherResponse,
 };

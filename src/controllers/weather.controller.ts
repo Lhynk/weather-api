@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
-import { requestLocation } from '../services/weather.service';
+import { Units } from '../models/weatherRequest.model';
+import { requestLocation, requestWeather } from '../services/weather.service';
 
 async function getLocation(req: Request, res: Response): Promise<any> {
   try {
@@ -14,6 +15,19 @@ async function getLocation(req: Request, res: Response): Promise<any> {
   }
 }
 
+async function getWeather(req: Request, res: Response): Promise<any> {
+  try {
+    const { lat, lon, units } = req.query as { lat: string; lon: string; units: Units };
+
+    const result = await requestWeather(lat, lon, units);
+
+    return res.json(result);
+  } catch (error: any) {
+    return res.status(error.code).json({ msg: error.message });
+  }
+}
+
 export const WeatherController = {
   getLocation,
+  getWeather,
 };

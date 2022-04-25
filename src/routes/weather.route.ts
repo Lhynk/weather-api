@@ -9,5 +9,6 @@ const locationSchema = [query('name', 'Name is required').exists()];
 const router = express.Router();
 
 router.get('/location', validate(locationSchema), WeatherController.getLocation);
+router.get('/weather', WeatherController.getWeather);
 
 export default router;

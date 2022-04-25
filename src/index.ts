@@ -10,6 +10,6 @@ const port: string | number = process.env.PORT || 3001;
 app.use(express.json());
 app.use(morgan('tiny'));
 
-app.use('/api/weather', weatherRouter);
+app.use('/api', weatherRouter);
 
 app.listen(port, () => console.log(`LWeather API is running on port ${port}`));

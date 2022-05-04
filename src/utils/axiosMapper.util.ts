@@ -29,7 +29,15 @@ const toLocationResponse = (data: Array<GeoLocation>): Array<LocationResponse> =
 
 const toWeatherResponse = ({ weather, main, wind }: any): WeatherResponse => ({
   icon: weather[0] && weather[0].icon,
-  info: main,
+  status: weather[0] && weather[0].main,
+  info: {
+    temp: main.temp,
+    pressure: main.pressure,
+    humidity: main.humidity,
+    feelsLike: main.feels_like,
+    tempMin: main.temp_min,
+    tempMax: main.temp_max,
+  },
   wind: { speed: wind.speed, deg: wind.deg },
 });
 
